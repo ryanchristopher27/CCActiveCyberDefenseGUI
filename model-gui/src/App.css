@@ -50,3 +50,8 @@ th {
 td {
   text-align: center;
 }
+
+header {
+  font-size: calc(20px + 2vmin);
+  text-align: center;
+}
