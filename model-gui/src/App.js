@@ -2,6 +2,9 @@ import React from 'react';
 import './App.css';
 import MainLayout from './layout/MainLayout';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import 'bootstrap/dist/js/bootstrap.min.js';
+
+
 
 
 // const data = [
