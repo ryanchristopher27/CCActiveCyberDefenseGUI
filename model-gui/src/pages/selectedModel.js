@@ -2,7 +2,7 @@ import React from 'react';
 import MainLayout from '../layout/MainLayout';
 import AccuracyChart from '../components/AccuracyLineChart';
 import PositiveChart from '../components/PositiveRateChart';
-
+import image from "../img/blueCircuits.png";
 
 const data = {
     model: "Model1",
@@ -106,7 +106,7 @@ const tableData = {
 const SelectedModel = () => {
     return (
         <MainLayout>
-            <div className="SelectedModel">
+            <div className="SelectedModel" style={{ backgroundImage:`url(${image})` }}>
                 <header className="SelectedModel-Header">
                     <h1 class="Header">
                         {data.model}
@@ -253,8 +253,13 @@ const SelectedModel = () => {
                             </tr>
                         </table>
                     </div>
-                    <AccuracyChart />
-                    <PositiveChart />
+                    <div class="Spacer"></div>
+                    <div class="Charts">
+                        <AccuracyChart />
+                            <div class="Spacer"></div>
+                        <PositiveChart />
+                    </div>
+                    <div class="Spacer"></div>
                 </div>
             </div>
         </MainLayout>

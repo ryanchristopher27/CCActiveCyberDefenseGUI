@@ -39,7 +39,6 @@
 
 table {
   border: 2px solid rgb(24, 109, 236);
-  border-radius: 5%;
   width: 80%;
   min-width: 800px;
   height: 200px;
@@ -62,22 +61,29 @@ header {
 
 
 /* Model List CSS */
+.ModelList {
+  height:100vh;
+}
+
 .Header {
   font-size: calc(35px + 2vmin);
+  color: white;
 }
 
 .ModelListTable {
   margin-left: auto;
   margin-right: auto;
+  background-color: white;
 }
 
 .TableDiv {
-  overflow-x: auto;
+  overflow-x: auto; 
 }
 
 .TableHeader {
   border-bottom: 2px solid rgb(24, 109, 236);
   background-color:rgb(24, 109, 236);
+  border-bottom: 2px solid white;
 }
 
 .TableRows {
@@ -106,6 +112,10 @@ header {
 }
 
 /* Selected Model */
+.SelectedModel {
+  height:100vh;
+}
+
 .accordion {
   width: 80%;
   margin-left: auto;
@@ -116,6 +126,7 @@ header {
   font-size: calc(25px + 2vmin);
   margin-left: auto;
   margin-right: auto;
+  color: white;
 }
 
 .GraphDiv {
@@ -127,6 +138,7 @@ header {
 
 .MetricsTable {
   text-align: center;
+  background-color: white;
 }
 
 .MetricsTableHeader {
@@ -148,4 +160,13 @@ header {
 
 .EmptyRow {
   background-color: rgb(24, 109, 236);
+}
+
+.Charts {
+  width: 80%;
+  min-width: 400px;
+}
+
+.Spacer {
+  margin-top: 30px;
 }

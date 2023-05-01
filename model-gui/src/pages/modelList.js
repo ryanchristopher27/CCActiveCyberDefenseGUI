@@ -1,6 +1,6 @@
 import React from "react";
-import { Button } from '@mui/material';
 import MainLayout from "../layout/MainLayout";
+import image from "../img/blueCircuits.png";
 
 const data = [
     { model: "Model1", version: "1.0.3", dataTrained: "4-03-2023", size: "654 MB", id: "1" },
@@ -16,7 +16,7 @@ function handleClick(id) {
 const ModelList = () => {
     return (
         <MainLayout>
-            <div className="ModelList">
+            <div className="ModelList" style={{ backgroundImage:`url(${image})` }}>
                 <header className="ModelList-Header">
                     <h1 class="Header">
                         Models
