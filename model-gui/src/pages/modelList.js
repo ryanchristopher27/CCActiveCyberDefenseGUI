@@ -18,29 +18,31 @@ const ModelList = () => {
         <MainLayout>
             <div className="ModelList">
                 <header className="ModelList-Header">
-                    <h1 class="header">
+                    <h1 class="Header">
                         Models
                     </h1>
-                    <table>
-                        <tr>
-                            <th>Model</th>
-                            <th>Version</th>
-                            <th>Data Trained</th>
-                            <th>Size</th>
-                            <th>Select</th>
-                        </tr>
-                        {data.map((val, key) => {
-                            return (
-                                <tr key={key}>
-                                    <td>{val.model}</td>
-                                    <td>{val.version}</td>
-                                    <td>{val.dataTrained}</td>
-                                    <td>{val.size}</td>
-                                    <td><Button variant="contained" onClick={() => handleClick(val.id)}>check</Button></td>
-                                </tr>
-                            )
-                        })}
-                    </table>
+                    <div class="TableDiv">
+                        <table class="ModelListTable">
+                            <tr class="TableHeader">
+                                <th>Model</th>
+                                <th>Version</th>
+                                <th>Data Trained</th>
+                                <th>Size</th>
+                                <th>Select</th>
+                            </tr>
+                            {data.map((val, key) => {
+                                return (
+                                    <tr key={key} class="TableRows">
+                                        <td>{val.model}</td>
+                                        <td>{val.version}</td>
+                                        <td>{val.dataTrained}</td>
+                                        <td>{val.size}</td>
+                                        <td><button type="button" class="SelectButton" onClick={() => handleClick(val.id)}>Select</button></td>
+                                    </tr>
+                                )
+                            })}
+                        </table>
+                    </div>
                 </header>
                 <body>
                 </body>
