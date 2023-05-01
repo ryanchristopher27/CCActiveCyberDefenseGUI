@@ -38,15 +38,135 @@
 }
 
 table {
-  border: 2px solid rgb(22, 179, 241);
-  width: 800px;
+  border: 2px solid rgb(24, 109, 236);
+  width: 80%;
+  min-width: 800px;
   height: 200px;
 }
   
 th {
   border-bottom: 1px solid black;
+  font-style: normal;
+  color: white;
 }
   
 td {
   text-align: center;
+}
+
+header {
+  font-size: calc(20px + 2vmin);
+  text-align: center;
+}
+
+
+/* Model List CSS */
+.ModelList {
+  height:100vh;
+}
+
+.Header {
+  font-size: calc(35px + 2vmin);
+  color: white;
+}
+
+.ModelListTable {
+  margin-left: auto;
+  margin-right: auto;
+  background-color: white;
+}
+
+.TableDiv {
+  overflow-x: auto; 
+}
+
+.TableHeader {
+  border-bottom: 2px solid rgb(24, 109, 236);
+  background-color:rgb(24, 109, 236);
+  border-bottom: 2px solid white;
+}
+
+.TableRows {
+  border-top: 2px solid rgb(150, 150, 150);
+}
+
+.TableRows:hover {
+  background-color: rgb(24, 109, 236);
+  color: white;
+}
+
+.SelectButton {
+  background-color: white;
+  border: 2px solid rgb(24, 109, 236);
+  border-radius: 10px;
+  height: 40px;
+  font-size: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto;
+}
+
+.btn:hover {
+  background-color: white;
+}
+
+/* Selected Model */
+.SelectedModel {
+  height:100vh;
+}
+
+.accordion {
+  width: 80%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.Subheader {
+  font-size: calc(25px + 2vmin);
+  margin-left: auto;
+  margin-right: auto;
+  color: white;
+}
+
+.GraphDiv {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.MetricsTable {
+  text-align: center;
+  background-color: white;
+}
+
+.MetricsTableHeader {
+  background-color: rgb(24, 109, 236);
+}
+
+.MetricsTableRows {
+  border-top: 2px solid rgb(24, 109, 236);
+}
+
+.MetricsTableData {
+  border-right: 2px solid rgb(24, 109, 236);
+}
+
+.MetricsTableData:hover {
+  background-color: rgb(24, 109, 236);
+  color: white;
+}
+
+.EmptyRow {
+  background-color: rgb(24, 109, 236);
+}
+
+.Charts {
+  width: 80%;
+  min-width: 400px;
+}
+
+.Spacer {
+  margin-top: 30px;
 }
