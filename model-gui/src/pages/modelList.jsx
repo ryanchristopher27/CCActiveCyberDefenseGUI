@@ -1,4 +1,5 @@
 import React from "react";
+import { createSearchParams, useNavigate } from "react-router-dom";
 import MainLayout from "../layout/MainLayout";
 import image from "../img/blueCircuits.png";
 
@@ -8,12 +9,13 @@ const data = [
     { model: "Model3", version: "0.0.4", dataTrained: "3-25-2023", size: "213 MB", id: "3" },
 ]
 
-function handleClick(id) {
-    // Define the logic for handling the button click here
-    console.log(`Button clicked for row with id ${id}`);
-}
-
 const ModelList = () => {
+    const navigate = useNavigate()
+
+    function handleClick(id) {
+        navigate({pathname: "/selectedModel", search: createSearchParams({id: id}).toString()})
+    }
+
     return (
         <MainLayout>
             <div className="ModelList" style={{ backgroundImage:`url(${image})` }}>
