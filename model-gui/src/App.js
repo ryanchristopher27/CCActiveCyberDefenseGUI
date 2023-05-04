@@ -3,6 +3,7 @@ import './App.css';
 import MainLayout from './layout/MainLayout';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.min.js';
+import image from "./img/blueCircuits.png";
 
 
 
@@ -16,8 +17,18 @@ import 'bootstrap/dist/js/bootstrap.min.js';
 function App() {
   return (
     <MainLayout>
-      <div>
-        Home
+      <div class="HomeDiv" style={{ backgroundImage: `url(${image})` }}>
+        <header className="Home-Header">
+          <h1 class="Header">
+            CICADA: Cloud-based Intelligent Classification and Active Defense Approach against Modern Cyber Attacks
+          </h1>
+        </header>
+        <div className="Spacer"></div>
+        <div>
+          <h1 className="Subheader">
+            Track 1
+          </h1>
+        </div>
       </div>
     </MainLayout>
   );

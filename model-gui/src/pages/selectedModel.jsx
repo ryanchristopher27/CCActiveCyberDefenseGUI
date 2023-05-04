@@ -1,56 +1,18 @@
 import React from "react";
 import { useSearchParams } from "react-router-dom";
 import MainLayout from "../layout/MainLayout";
-import AccuracyChart from "../components/AccuracyLineChart";
-import PositiveChart from "../components/PositiveRateChart";
+// import AccuracyChart from "../components/AccuracyLineChart";
+// import PositiveChart from "../components/PositiveRateChart";
 import image from "../img/blueCircuits.png";
-import { mockData, mockTableData } from "./mockdata";
-
-// google.charts.load('current', {packages: ['corechart', 'line']});
-// google.charts.setOnLoadCallback(drawCurveTypes);
-
-// function drawCurveTypes() {
-//       var data = new google.visualization.DataTable();
-//       data.addColumn('number', 'X');
-//       data.addColumn('number', 'Dogs');
-//       data.addColumn('number', 'Cats');
-
-//       data.addRows([
-//         [0, 0, 0],    [1, 10, 5],   [2, 23, 15],  [3, 17, 9],   [4, 18, 10],  [5, 9, 5],
-//         [6, 11, 3],   [7, 27, 19],  [8, 33, 25],  [9, 40, 32],  [10, 32, 24], [11, 35, 27],
-//         [12, 30, 22], [13, 40, 32], [14, 42, 34], [15, 47, 39], [16, 44, 36], [17, 48, 40],
-//         [18, 52, 44], [19, 54, 46], [20, 42, 34], [21, 55, 47], [22, 56, 48], [23, 57, 49],
-//         [24, 60, 52], [25, 50, 42], [26, 52, 44], [27, 51, 43], [28, 49, 41], [29, 53, 45],
-//         [30, 55, 47], [31, 60, 52], [32, 61, 53], [33, 59, 51], [34, 62, 54], [35, 65, 57],
-//         [36, 62, 54], [37, 58, 50], [38, 55, 47], [39, 61, 53], [40, 64, 56], [41, 65, 57],
-//         [42, 63, 55], [43, 66, 58], [44, 67, 59], [45, 69, 61], [46, 69, 61], [47, 70, 62],
-//         [48, 72, 64], [49, 68, 60], [50, 66, 58], [51, 65, 57], [52, 67, 59], [53, 70, 62],
-//         [54, 71, 63], [55, 72, 64], [56, 73, 65], [57, 75, 67], [58, 70, 62], [59, 68, 60],
-//         [60, 64, 56], [61, 60, 52], [62, 65, 57], [63, 67, 59], [64, 68, 60], [65, 69, 61],
-//         [66, 70, 62], [67, 72, 64], [68, 75, 67], [69, 80, 72]
-//       ]);
-
-//       var options = {
-//         hAxis: {
-//           title: 'Time'
-//         },
-//         vAxis: {
-//           title: 'Popularity'
-//         },
-//         series: {
-//           1: {curveType: 'function'}
-//         }
-//       };
-
-//       var chart = new google.visualization.LineChart(document.getElementById('chart_div'));
-//       chart.draw(data, options);
-//     }
+// import { mockData, mockTableData } from "./mockdata";
+import { apiData } from "./data";
 
 const SelectedModel = () => {
   const [searchParams] = useSearchParams();
   const id = searchParams.get("id");
-  const data = id ? mockData.find((e) => e.id === parseInt(id)) : {};
-  const tableData = mockTableData;
+  // const data = id ? mockData.find((e) => e.id === parseInt(id)) : {};
+  // const tableData = mockTableData;
+  const aData = id ? apiData.response.find((e) => e.id === parseInt(id)) : {};
 
   return (
     <MainLayout>
@@ -59,10 +21,94 @@ const SelectedModel = () => {
         style={{ backgroundImage: `url(${image})` }}
       >
         <header className="SelectedModel-Header">
-          <h1 class="Header">{data.model}</h1>
+          <h1 class="Header">Model {aData.id}</h1>
         </header>
+        
         <div class="accordion accordion-flush" id="accordionFlushExample">
           <div class="accordion-item">
+            <h2 class="accordion-header" id="flush-headingInfo">
+              <button
+                class="accordion-button collapsed"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#flush-collapseInfo"
+                aria-expanded="false"
+                aria-controls="flush-collapseInfo"
+              >
+                Model Information
+              </button>
+            </h2>
+            <div
+              id="flush-collapseInfo"
+              class="accordion-collapse collapse"
+              aria-labelledby="flush-headingInfo"
+              data-bs-parent="#accordionFlushExample"
+            >
+              <div class="accordion-body">
+                <ul class="list-group list-group-flush">
+                  <li class="list-group-item">Experiment Date: {aData.exp_date}</li>
+                  <li class="list-group-item">
+                    Dataset Name: {aData.dataset_name}
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div class="accordion-item">
+            <h2 class="accordion-header" id="flush-headingResults">
+              <button
+                class="accordion-button collapsed"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#flush-collapseResults"
+                aria-expanded="false"
+                aria-controls="flush-collapseResults"
+              >
+                Model Results
+              </button>
+            </h2>
+            <div
+              id="flush-collapseResults"
+              class="accordion-collapse collapse"
+              aria-labelledby="flush-headingResults"
+              data-bs-parent="#accordionFlushExample"
+            >
+              <div class="accordion-body">
+                <ul class="list-group list-group-flush">
+                  <li class="list-group-item">F1 Score: {aData.F1_score}</li>
+                  <li class="list-group-item">Recall: {aData.Recall}</li>
+                  <li class="list-group-item">Accuracy: {aData.accuracy}</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div class="accordion-item">
+            <h2 class="accordion-header" id="flush-headingDownload">
+              <button
+                class="accordion-button collapsed"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#flush-collapseDownload"
+                aria-expanded="false"
+                aria-controls="flush-collapseDownload"
+              >
+                Model Download
+              </button>
+            </h2>
+            <div
+              id="flush-collapseDownload"
+              class="accordion-collapse collapse"
+              aria-labelledby="flush-headingDownload"
+              data-bs-parent="#accordionFlushExample"
+            >
+              <div class="accordion-body">
+                <ul class="list-group list-group-flush">
+                  <li class="list-group-item">Download Link: {aData.model}</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          {/* <div class="accordion-item">
             <h2 class="accordion-header" id="flush-headingGeneral">
               <button
                 class="accordion-button collapsed"
@@ -91,8 +137,8 @@ const SelectedModel = () => {
                 </ul>
               </div>
             </div>
-          </div>
-          <div class="accordion-item">
+          </div> */}
+          {/* <div class="accordion-item">
             <h2 class="accordion-header" id="flush-headingHyperParams">
               <button
                 class="accordion-button collapsed"
@@ -125,8 +171,8 @@ const SelectedModel = () => {
                 </ul>
               </div>
             </div>
-          </div>
-          <div class="accordion-item">
+          </div> */}
+          {/* <div class="accordion-item">
             <h2 class="accordion-header" id="flush-headingTrainingData">
               <button
                 class="accordion-button collapsed"
@@ -159,8 +205,8 @@ const SelectedModel = () => {
                 </ul>
               </div>
             </div>
-          </div>
-          <div class="accordion-item">
+          </div> */}
+          {/* <div class="accordion-item">
             <h2 class="accordion-header" id="flush-headingTrainingPerf">
               <button
                 class="accordion-button collapsed"
@@ -193,8 +239,8 @@ const SelectedModel = () => {
                 </ul>
               </div>
             </div>
-          </div>
-          <div class="accordion-item">
+          </div> */}
+          {/* <div class="accordion-item">
             <h2 class="accordion-header" id="flush-headingModelUpdates">
               <button
                 class="accordion-button collapsed"
@@ -227,13 +273,14 @@ const SelectedModel = () => {
                 </ul>
               </div>
             </div>
-          </div>
+          </div> */}
         </div>
         {/* <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
                 <div id="chart_div"></div> */}
         <div class="GraphDiv">
+          <div class="Spacer"></div>
           <h1 class="Subheader">Model Analytics</h1>
-          <div class="TableDiv">
+          {/* <div class="TableDiv">
             <table class="MetricsTable">
               <tr class="MetricsTableHeader">
                 <th></th>
@@ -290,13 +337,21 @@ const SelectedModel = () => {
                   {tableData.weightedAvg.support}
                 </td>
               </tr>
-            </table>
-          </div>
-          <div class="Spacer"></div>
+            </table> 
+          </div> */}
+          {/* <div class="Spacer"></div>
           <div class="Charts">
             <AccuracyChart />
             <div class="Spacer"></div>
             <PositiveChart />
+          </div> */}
+          <div class="Spacer"></div>
+          <div class="ImageDiv">
+            <img class="ConfMatImage" src={ aData.confusion_matrix } alt="Confustion Matrix"></img>
+          </div>
+          <div class="Spacer"></div>
+          <div class="ImageDiv">
+            <img class="FeatureImage" src={ aData.feature_importance } alt="Feature Importance"></img>
           </div>
           <div class="Spacer"></div>
         </div>
