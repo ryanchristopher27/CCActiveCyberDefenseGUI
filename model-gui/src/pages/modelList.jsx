@@ -7,19 +7,16 @@ import { apiData } from "./data";
 
 const ModelList = () => {
     const [data, setData] = useState([]);
-    let test = [];
     useEffect(() => {
         const fetchData = async () => {
             try {
                 const response = await fetch("http://44.203.9.246:5000/get_model_details");
                 const jsonData = await response.json();
                 setData(jsonData);
-                test = jsonData.response;
             } catch (error) {
                 console.log("API request failed. Using static data instead.");
                 const staticdata = apiData;
                 setData(staticdata);
-                test = apiData;
             }
         };
 
