@@ -182,3 +182,18 @@ header {
 .Spacer {
   margin-top: 30px;
 }
+
+.ImageDiv {
+  width: 80%;
+  min-width: 400px;
+}
+
+.ImageDiv .ConfMatImage {
+  width: 100%;
+  height: auto;
+}
+
+.ImageDiv .FeatureImage {
+  width: 100%;
+  height: auto;
+}
