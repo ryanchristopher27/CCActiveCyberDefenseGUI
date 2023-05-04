@@ -10,7 +10,7 @@ function NavbarComp() {
             <Navbar.Collapse id="basic-navbar-nav">
                 <Nav className="mr-auto">
                     <Nav.Link><Link to="/modelList" style={{ textDecoration: 'none', color: '#2f2f2f' }}>Model List</Link></Nav.Link>
-                    <Nav.Link><Link to="/selectedModel" style={{ textDecoration: 'none', color: '#2f2f2f' }}>Selected Model</Link></Nav.Link>
+                    <Nav.Link disabled><Link to="/selectedModel" style={{ textDecoration: 'none', color: '#2f2f2f' }}>Selected Model</Link></Nav.Link>
                 </Nav>
             </Navbar.Collapse>
         </Navbar>
