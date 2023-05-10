@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { useSearchParams } from "react-router-dom";
 import MainLayout from "../layout/MainLayout";
 // import AccuracyChart from "../components/AccuracyLineChart";
@@ -10,9 +10,33 @@ import { apiData } from "./data";
 const SelectedModel = () => {
   const [searchParams] = useSearchParams();
   const id = searchParams.get("id");
-  // const data = id ? mockData.find((e) => e.id === parseInt(id)) : {};
-  // const tableData = mockTableData;
-  const aData = id ? apiData.response.find((e) => e.id === parseInt(id)) : {};
+
+  const [data, setData] = useState([]);
+  const [aData, setAData] = useState({});
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await fetch(
+          "http://44.203.9.246:5000/get_model_details"
+        );
+        const jsonData = await response.json();
+        setData(jsonData.response);
+      } catch (error) {
+        console.log("API request failed. Using static data instead.");
+        const staticdata = apiData;
+        setData(staticdata);
+      }
+    };
+
+    fetchData();
+  }, []);
+
+  useEffect(() => {
+    if (data.length > 0) {
+      setAData(id ? data.find((e) => e.id === parseInt(id)) : {});
+    }
+  }, [data]);
 
   return (
     <MainLayout>
@@ -23,7 +47,7 @@ const SelectedModel = () => {
         <header className="SelectedModel-Header">
           <h1 class="Header">Model {aData.id}</h1>
         </header>
-        
+
         <div class="accordion accordion-flush" id="accordionFlushExample">
           <div class="accordion-item">
             <h2 class="accordion-header" id="flush-headingInfo">
@@ -46,7 +70,9 @@ const SelectedModel = () => {
             >
               <div class="accordion-body">
                 <ul class="list-group list-group-flush">
-                  <li class="list-group-item">Experiment Date: {aData.exp_date}</li>
+                  <li class="list-group-item">
+                    Experiment Date: {aData.exp_date}
+                  </li>
                   <li class="list-group-item">
                     Dataset Name: {aData.dataset_name}
                   </li>
@@ -347,11 +373,19 @@ const SelectedModel = () => {
           </div> */}
           <div class="Spacer"></div>
           <div class="ImageDiv">
-            <img class="ConfMatImage" src={ aData.confusion_matrix } alt="Confustion Matrix"></img>
+            <img
+              class="ConfMatImage"
+              src={aData.confusion_matrix}
+              alt="Confustion Matrix"
+            ></img>
           </div>
           <div class="Spacer"></div>
           <div class="ImageDiv">
-            <img class="FeatureImage" src={ aData.feature_importance } alt="Feature Importance"></img>
+            <img
+              class="FeatureImage"
+              src={aData.feature_importance}
+              alt="Feature Importance"
+            ></img>
           </div>
           <div class="Spacer"></div>
         </div>
